@@ -1,0 +1,71 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--text-h);
+  margin: 0 0 16px;
+}
+
+#app {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#settings label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-h);
+  margin-bottom: 8px;
+}
+
+#padding-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text);
+}
