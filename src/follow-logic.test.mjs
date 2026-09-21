@@ -45,3 +45,17 @@ test("clampFollowPadding passes through in-range values", () => {
   assert.equal(clampFollowPadding(20), 20);
   assert.equal(clampFollowPadding("20"), 20);
 });
+
+test("shouldReclaimSelection: false when not following", () => {
+  assert.equal(shouldReclaimSelection(false, "token-1", []), false);
+  assert.equal(shouldReclaimSelection(true, null, []), false);
+});
+
+test("shouldReclaimSelection: true when following and selection is empty", () => {
+  assert.equal(shouldReclaimSelection(true, "token-1", []), true);
+  assert.equal(shouldReclaimSelection(true, "token-1", undefined), true);
+});
+
+test("shouldReclaimSelection: false when something is already selected", () => {
+  assert.equal(shouldReclaimSelection(true, "token-1", ["token-2"]), false);
+});

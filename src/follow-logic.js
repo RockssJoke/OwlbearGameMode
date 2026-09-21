@@ -24,3 +24,11 @@ export function clampFollowPadding(value) {
   if (!Number.isFinite(parsed)) return DEFAULT_FOLLOW_PADDING;
   return Math.min(MAX_FOLLOW_PADDING, Math.max(MIN_FOLLOW_PADDING, parsed));
 }
+
+// Decides whether the followed token should reclaim player selection so
+// arrow-key movement (native to Owlbear) controls it by default, without
+// fighting a selection the player made on purpose.
+export function shouldReclaimSelection(following, followedTokenId, selection) {
+  if (!following || !followedTokenId) return false;
+  return !selection || selection.length === 0;
+}

@@ -4,6 +4,7 @@ import {
   DEFAULT_FOLLOW_PADDING,
   FOLLOW_PADDING_METADATA_KEY,
   clampFollowPadding,
+  shouldReclaimSelection,
 } from "./follow-logic.js";
 
 const ID = "com.theo.follow-token";
@@ -24,6 +25,7 @@ OBR.onReady(async () => {
     followPadding = clampFollowPadding(
       player.metadata[FOLLOW_PADDING_METADATA_KEY] ?? DEFAULT_FOLLOW_PADDING
     );
+    reclaimSelectionIfEmpty();
   });
 
   OBR.contextMenu.create({
@@ -84,6 +86,8 @@ async function startFollowing(context, token) {
     for (const item of items) item.metadata[FOLLOWING_KEY] = true;
   });
 
+  await OBR.player.select([token.id], true); // grab control so arrow keys move it right away
+
   const bounds = getFollowBounds(context.selectionBounds, followPadding);
   if (bounds) await OBR.viewport.animateToBounds(bounds);
 }
@@ -99,6 +103,16 @@ async function clearFollowingMetadata(id) {
   await OBR.scene.items.updateItems([id], (items) => {
     for (const item of items) delete item.metadata[FOLLOWING_KEY];
   });
+}
+
+async function reclaimSelectionIfEmpty() {
+  try {
+    const selection = await OBR.player.getSelection();
+    if (!shouldReclaimSelection(following, followedTokenId, selection)) return;
+    await OBR.player.select([followedTokenId], true);
+  } catch (err) {
+    console.error("[follow-token] failed to reclaim selection:", err);
+  }
 }
 
 async function handleItemsChange(items) {
