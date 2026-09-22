@@ -6,8 +6,8 @@
     "title": "JoyStick Mode",
     "icon": "/icon.svg",
     "popover": "/",
-    "height": "auto",
-    "width": "auto"
+    "height": 600,
+    "width": 400
   },
   "background_url": "/background.html"
 }

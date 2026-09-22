@@ -48,4 +48,7 @@ OBR.onReady(async () => {
     valueLabel.textContent = padding;
     OBR.player.setMetadata({ [FOLLOW_PADDING_METADATA_KEY]: padding });
   });
+  new ResizeObserver(() => {
+  OBR.action.setHeight(document.documentElement.scrollHeight);
+}).observe(document.body);
 });
