@@ -21,12 +21,13 @@ OBR.onReady(async () => {
     metadata[FOLLOW_PADDING_METADATA_KEY] ?? DEFAULT_FOLLOW_PADDING
   );
 
-  OBR.player.onChange((player) => {
-    followPadding = clampFollowPadding(
-      player.metadata[FOLLOW_PADDING_METADATA_KEY] ?? DEFAULT_FOLLOW_PADDING
-    );
-    reclaimSelectionIfEmpty();
-  });
+OBR.player.onChange((player) => {
+  followPadding = clampFollowPadding(
+    player.metadata[FOLLOW_PADDING_METADATA_KEY] ?? DEFAULT_FOLLOW_PADDING
+  );
+  reclaimSelectionIfEmpty();
+  reanimateFollowedToken();
+});
 
   OBR.contextMenu.create({
     id: `${ID}/context-menu`,
@@ -134,13 +135,19 @@ async function handleItemsChange(items) {
   ) {
     return; // nothing moved, don't re-animate on unrelated scene edits
   }
+// after
   lastPosition = { ...token.position };
+  await reanimateFollowedToken();
+}
 
+// new helper, place near handleItemsChange
+async function reanimateFollowedToken() {
+  if (!following || !followedTokenId) return;
   try {
     const itemBounds = await OBR.scene.items.getItemBounds([followedTokenId]);
     const bounds = getFollowBounds(itemBounds, followPadding);
     if (bounds) await OBR.viewport.animateToBounds(bounds);
   } catch (err) {
-    console.error("[follow-token] failed to follow token movement:", err);
+    console.error("[follow-token] failed to re-zoom on padding change:", err);
   }
 }
