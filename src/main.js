@@ -37,17 +37,10 @@ OBR.onReady(async () => {
   );
   input.value = initial;
   valueLabel.textContent = initial;
-// replace the existing input listener
-let debounceId;
-input.addEventListener("input", () => {
-  valueLabel.textContent = input.value;
-  clearTimeout(debounceId);
-  debounceId = setTimeout(() => {
-    OBR.player.setMetadata({
-      [FOLLOW_PADDING_METADATA_KEY]: clampFollowPadding(input.value),
-    });
-  }, 100);
-});
+
+  input.addEventListener("input", () => {
+    valueLabel.textContent = input.value;
+  });
 
   input.addEventListener("change", () => {
     const padding = clampFollowPadding(input.value);
