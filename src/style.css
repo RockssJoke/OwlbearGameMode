@@ -17,6 +17,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100px;
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,7 +29,6 @@
     --border: #2e303a;
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
-    --display: flex;
   }
 }
 
