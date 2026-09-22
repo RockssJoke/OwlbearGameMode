@@ -27,6 +27,8 @@
     --border: #2e303a;
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
+    --height: auto;
+    --width: auto;
   }
 }
 
