@@ -44,6 +44,8 @@ h1 {
 #app {
   padding: 20px;
   box-sizing: border-box;
+  size: 10;
+  width: 100%
 }
 
 #settings label {
