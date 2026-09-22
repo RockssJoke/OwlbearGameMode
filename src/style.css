@@ -17,8 +17,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100px;
-  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,7 +53,6 @@ h1 {
 }
 
 #settings label {
-  display: flex;
   justify-content: space-between;
   font-size: 14px;
   color: var(--text-h);
