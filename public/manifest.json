@@ -1,9 +1,9 @@
 {
-  "name": "GameMode",
+  "name": "JoyStick Mode",
   "version": "1.0.0",
   "manifest_version": 1,
   "action": {
-    "title": "GAMEMODE",
+    "title": "JoyStick Mode",
     "icon": "/icon.svg",
     "popover": "/",
     "height": 600,
