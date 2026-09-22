@@ -10,7 +10,7 @@ import {
 
 document.querySelector("#app").innerHTML = `
   <section id="settings">
-    <h1>Follow Token</h1>
+    <h1><center> Follow Token </center></h1>
     <label for="padding">
       Zoom padding
       <span id="padding-value">${DEFAULT_FOLLOW_PADDING}</span>
