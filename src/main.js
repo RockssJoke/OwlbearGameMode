@@ -57,7 +57,8 @@ input.addEventListener("input", () => {
     valueLabel.textContent = padding;
     OBR.player.setMetadata({ [FOLLOW_PADDING_METADATA_KEY]: padding });
   });
-  new ResizeObserver(() => {
-  OBR.action.setHeight(document.documentElement.scrollHeight);
+  new ResizeObserver(([entry]) => {
+  const height = Math.ceil(entry.borderBoxSize[0].blockSize);
+  OBR.action.setHeight(height);
 }).observe(document.body);
 });
